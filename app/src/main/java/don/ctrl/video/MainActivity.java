@@ -1,27 +1,34 @@
 package don.ctrl.video;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
+import android.support.v4.app.NotificationCompatSideChannelService;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mPlay;
+    private LinearLayout mPlay;
     private VideoView mVideoView;
     private MediaController mMediaController;
+    private boolean mCheck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mCheck = false;
         initUi();
 
     }
     private void initUi(){
-        mPlay = (Button) findViewById(R.id.btn_play);
+        mPlay = (LinearLayout) findViewById(R.id.btn_play);
         mVideoView = (VideoView) findViewById(R.id.videoView);
         mMediaController = new MediaController(this);
         mPlay.setOnClickListener(this);
@@ -33,18 +40,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Uri uri = Uri.parse(videoPath);
         mVideoView.setVideoURI(uri);
         mVideoView.setMediaController(mMediaController);
-        mMediaController.setAnchorView(mVideoView);
-        mMediaController.requestFocus();
+  /*      mMediaController.setAnchorView(mVideoView);
+        mMediaController.requestFocus();*/
         mVideoView.start();
+        mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+
+                mCheck = true;
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_play:
+
                 setmVideoView();
+                if (mCheck==false){
+                    mPlay.setVisibility(View.VISIBLE);
+
+                }else{
+                    mPlay.setVisibility(View.GONE);
+                }
+
+
         }
     }
+
+
 
 
 

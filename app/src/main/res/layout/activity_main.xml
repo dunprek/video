@@ -16,12 +16,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="67dp" />
 
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
         android:id="@+id/btn_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:drawable/ic_media_play"
+        android:text="New Button"
         android:layout_alignTop="@+id/videoView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
-        android:text="New Button" />
+        android:layout_marginTop="58dp" />
+
 </RelativeLayout>
