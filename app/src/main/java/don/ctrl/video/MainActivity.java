@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   /*      mMediaController.setAnchorView(mVideoView);
         mMediaController.requestFocus();*/
         mVideoView.start();
+//        a;lj;dlsfkads;lf
         mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
